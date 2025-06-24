@@ -1,6 +1,7 @@
 
 import React from "react";
 import './drink.css';
+import Layers from "../layers/Layers.jsx";
 
 const Drink = ({ name, image, title }) => {
     return (
@@ -11,10 +12,7 @@ const Drink = ({ name, image, title }) => {
                 </div>
                 <div className="drink__info">
                     <h3>{title}</h3>
-                    <div className="layer">
-                        <div className="layer__color" style={{ backgroundColor: '#613916' }}></div>
-                        <div className="layer__label">espresso</div>
-                    </div>
+                   <Layers color="#feeeca" label="mléčná pěna" />
                 </div>
             </div>
             <form className="drink__controls">
