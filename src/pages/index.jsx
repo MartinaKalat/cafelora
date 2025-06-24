@@ -9,6 +9,7 @@ import Contact from "../components/Contact.jsx"
 import Footer from "../components/Footer.jsx"
 
 
+
 document.querySelector('#root').innerHTML = render(
   <div className="page">
    <Header />
@@ -21,3 +22,17 @@ document.querySelector('#root').innerHTML = render(
     </main>
   </div>
 );
+
+
+const navBtn = document.querySelector('.nav-btn');
+const rolloutNav = document.querySelector('.rollout-nav');
+
+navBtn.addEventListener('click', () => {
+    rolloutNav.classList.toggle('nav-closed');
+});
+
+rolloutNav.addEventListener('click', (event) => {
+    if (event.target.tagName === 'A') {
+        rolloutNav.classList.add('nav-closed');
+    }
+});
