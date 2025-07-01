@@ -3,22 +3,29 @@ import React from "react";
 import './drink.css';
 import Layers from "../layers/Layers.jsx";
 
-const Drink = ({ name, image, title }) => {
+const Drink = ({ name, image, title, layers, ordered, id }) => {
     return (
         <div className="drink">
             <div className={`drink__item ${name}`}>
                 <div className="drink__cup">
-                    <img src={image} alt={title} />
+                    <img src= {image} alt= {title} />
                 </div>
                 <div className="drink__info">
                     <h3>{title}</h3>
-                   <Layers color="#feeeca" label="mléčná pěna" />
+                    {layers.map((layer, index) => (
+
+
+                   <Layers key={index} label={layer.label} color={layer.color} />
+                    ))}
                 </div>
             </div>
-            <form className="drink__controls">
-                <input type="hidden" className="order-id" value="0" />
-                <button className="order-btn">
-                    Objednat
+            <form className="drink__controls" data-id={id}>
+                <input type="hidden" className="order-id" value={id}/>
+                <button
+                    className={`order-btn ${ordered ? "order-btn--ordered" : ""}`}
+                   type="submit"
+                        >
+                    {ordered ? "Zrusit" : "Objednat" }
                 </button>
             </form>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import "./menu.css"
 import Drink from "../components/drinks/Drink.jsx";
 
-const Menu = () => {
+const Menu = ({drinks}) => {
     return (
         <section className="menu" id="menu">
             <div className="container">
@@ -10,10 +10,19 @@ const Menu = () => {
                 <p className="menu-intro">
                     Vyberte si z našeho interaktivního menu a nemusíte čekat na obsluhu
                 </p>
-
-                <Drink name="Espresso" title="Espresso"/>
-                <Drink name="Cappuccino" title="Cappuccino"/>
-                <Drink name="Latte" title="Latte"/>
+<div className="drinks-menu">
+    {drinks?.map?.(drink => (
+        <Drink
+        key={drink.id}
+        name={`drink--${drink.id}`}
+        title={drink.name}
+        ordered={drink.ordered}
+        layers={drink.layers}
+        image={`http://localhost:4000${drink.image}`}
+        id={drink.id}
+        />
+    ))}
+</div>
 
                 <div className="order-detail">
                     <a href="/order.html">Detail objednávky</a>
