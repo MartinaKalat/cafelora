@@ -42,29 +42,41 @@ const loadPage = async () => {
         }
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const forms = document.querySelectorAll('.drink__controls')
-        forms.forEach(form => {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
 
-                const id = form.dataset.id;
-                console.log("Chci si objendat napoj s id", id)
+    const forms = document.querySelectorAll('.drink__controls')
+    forms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
+            const id = form.dataset.id;
+            // console.log("Chci si objendat napoj s id", id)
+            const button = document.querySelector('button');
+            const order = form.dataset.ordered === 'true';
+
+
+            const patch = [{op: 'replace', path: '/ordered', value: !order}];
+
+            try {
                 const response = await fetch(`http://localhost:4000/api/drinks/${id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify([
-                        {op: 'replace', path: '/ordered', value: true},
-                    ]),
+                    body: JSON.stringify(patch)
                 });
-
-                const result = await response.json();
-            })
+                if (response.ok) {
+                    console.log(response);
+                } else {
+                    throw new Error(`Error parsing drink ${id}`)
+                }
+                const result = await response.json()
+                console.log(result);
+                window.location.reload()
+            } catch (error) {
+                console.log(error)
+            }
         })
     })
-
 }
-loadPage();
+
+        loadPage();

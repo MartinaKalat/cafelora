@@ -19,7 +19,7 @@ const Drink = ({ name, image, title, layers, ordered, id }) => {
                     ))}
                 </div>
             </div>
-            <form className="drink__controls" data-id={id}>
+            <form className="drink__controls" data-id={id} data-ordered={ordered}>
                 <input type="hidden" className="order-id" value={id}/>
                 <button
                     className={`order-btn ${ordered ? "order-btn--ordered" : ""}`}
