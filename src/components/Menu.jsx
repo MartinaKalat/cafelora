@@ -10,7 +10,7 @@ const Menu = ({drinks}) => {
                 <p className="menu-intro">
                     Vyberte si z našeho interaktivního menu a nemusíte čekat na obsluhu
                 </p>
-<div className="drinks-menu">
+<div className="drinks-list">
     {drinks?.map?.(drink => (
         <Drink
         key={drink.id}
